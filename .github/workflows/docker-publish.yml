@@ -24,3 +24,19 @@ jobs:
       - name: Build Eurka Naming Server Container Image
         working-directory: ./naming-server
         run: mvn spring-boot:build-image -DskipTests
+        
+      - name: Build API Gateway Server Container Image
+        working-directory: ./api-gateway
+        run: mvn spring-boot:build-image -DskipTests
+        
+      - name: Build Cambio Microsservice JAR
+        working-directory: ./cambio-service
+        run: mvn clean package -DskipTests
+
+      - name: Build Book Microsservice JAR
+        working-directory: ./book-service
+        run: mvn clean package -DskipTests
+        
+      - name: Docker Compose Build
+        working-directory: .
+        run: docker-compose build
